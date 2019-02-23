@@ -49,5 +49,7 @@ tensquare_parent/tensquare_recruit/tensquare_recruit.iml
 tensquare_parent/tensquare_recruit/target
 tensquare_parent/tensquare_spit/tensquare_spit.iml
 tensquare_parent/tensquare_spit/target
+*.iml
+*/target
 
 
