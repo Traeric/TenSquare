@@ -24,6 +24,6 @@
 hs_err_pid*
 
 # ignore all .idea directory
-./tensquareForward/.idea
-./vue-admin-template-master/.idea
-./tensquare_parent/.idea
+tensquareForward/.idea
+vue-admin-template-master/.idea
+tensquare_parent/.idea
