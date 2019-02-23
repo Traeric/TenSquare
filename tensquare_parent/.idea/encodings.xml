@@ -2,16 +2,28 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_article" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_article" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_friend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_friend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_qa" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_qa" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_recruit" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_recruit" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_sms" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_sms" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_spit" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_spit" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tensquare_user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tensquare_user" charset="UTF-8" />
   </component>
 </project>
