@@ -1,0 +1,26 @@
+server:
+  port: 9003    # 指定端口
+
+spring:
+  application:
+    name: tensquare-qa   # 模块名
+  datasource:   # 配置数据源
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.43.228:3306/tensquare_qa?characterEncoding=utf-8
+    username: root
+    password: 123
+  jpa:      # 配置jpa
+    database: mysql
+    show-sql: true
+jwt:
+  config:
+    # 加盐
+    key: lmzw
+    ttl: 3600000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+

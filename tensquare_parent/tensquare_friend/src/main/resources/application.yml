@@ -1,0 +1,24 @@
+server:
+  port: 9010
+spring:
+  application:
+    name: tensquare-friend
+  datasource:   # 配置数据源
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.43.228:3306/tensquare_friend?characterEncoding=utf-8
+    username: root
+    password: 123
+  jpa:      # 配置jpa
+    database: mysql
+    show-sql: true
+jwt:
+  config:
+    # 加盐
+    key: lmzw
+    ttl: 3600000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true     # 跨域访问

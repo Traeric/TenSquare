@@ -1,0 +1,7 @@
+server:
+  port: 9009
+spring:
+  application:
+    name: tensquare-sms
+  rabbitmq:
+    host: 192.168.43.228
