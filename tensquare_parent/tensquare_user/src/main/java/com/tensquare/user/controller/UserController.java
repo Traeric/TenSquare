@@ -5,6 +5,7 @@ import com.tensquare.user.service.UserService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
@@ -22,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
+@RefreshScope
 @RequestMapping("/user")
 public class UserController {
 

@@ -10,7 +10,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface BaseClient {
 
     @GetMapping("/label/{labelId}")
-    default Result findById(@PathVariable("labelId") String id) {
-        return null;
-    }
+    Result findById(@PathVariable("labelId") String id);
 }

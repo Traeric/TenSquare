@@ -5,6 +5,7 @@ import com.tensquare.recruit.service.LabelService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin            // 跨域
+@RefreshScope
 @RequestMapping("/label")
 public class LabelController {
     @Resource(name = "labelService")
