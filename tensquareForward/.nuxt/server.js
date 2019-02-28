@@ -1,14 +1,16 @@
 import { stringify } from 'querystring'
 import Vue from 'vue'
-import omit from 'lodash/omit'
-import middleware from './middleware'
-import { applyAsyncData, sanitizeComponent, getMatchedComponents, getContext, middlewareSeries, promisify, urlJoin } from './utils'
-import { createApp, NuxtError } from './index'
+import middleware from './middleware.js'
+import { applyAsyncData, getMatchedComponents, middlewareSeries, promisify, urlJoin, sanitizeComponent } from './utils.js'
+import { createApp, NuxtError } from './index.js'
+import NuxtLink from './components/nuxt-link.server.js' // should be included after ./index.js
+
+// Component: <NuxtLink>
+Vue.component(NuxtLink.name, NuxtLink)
+Vue.component('NLink', NuxtLink)
 
 const debug = require('debug')('nuxt:render')
 debug.color = 4 // force blue color
-
-const isDev = true
 
 const noopApp = () => new Vue({ render: h => h('div') })
 
@@ -76,7 +78,7 @@ export default async (ssrContext) => {
     return renderErrorPage()
   }
 
-  const s = isDev && Date.now()
+  const s = Date.now()
 
   // Components are already resolved by setContext -> getRouteData (app/utils.js)
   const Components = getMatchedComponents(router.match(ssrContext.url))
@@ -111,7 +113,8 @@ export default async (ssrContext) => {
   ** Call middleware (layout + pages)
   */
   midd = []
-  if (layout.middleware) midd = midd.concat(layout.middleware)
+  layout = sanitizeComponent(layout)
+  if (layout.options.middleware) midd = midd.concat(layout.options.middleware)
   Components.forEach((Component) => {
     if (Component.options.middleware) {
       midd = midd.concat(Component.options.middleware)

@@ -1,7 +1,6 @@
 <template>
     <div class="wrapper tag-item">
         <div class="fl left-list">
-
             <div class="job-position">
                 <div class="job-type reco-job">
                     <div class="head">

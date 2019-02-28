@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Meta from 'vue-meta'
 import { createRouter } from './router.js'
-import NoSSR from './components/no-ssr.js'
+import NoSsr from './components/no-ssr.js'
 import NuxtChild from './components/nuxt-child.js'
-import NuxtLink from './components/nuxt-link.js'
 import NuxtError from './components/nuxt-error.vue'
 import Nuxt from './components/nuxt.js'
 import App from './App.js'
@@ -11,20 +10,20 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_vueinfinitescroll_4479822e from 'nuxt_plugin_vueinfinitescroll_4479822e' // Source: ../plugins/vue-infinite-scroll.js (ssr: false)
-import nuxt_plugin_elementui_72a9ed1c from 'nuxt_plugin_elementui_72a9ed1c' // Source: ../plugins/element-ui.js (ssr: false)
-import nuxt_plugin_nuxtquillplugin_3ab6ceae from 'nuxt_plugin_nuxtquillplugin_3ab6ceae' // Source: ../plugins/nuxt-quill-plugin.js (ssr: false)
+import nuxt_plugin_vueinfinitescroll_4479822e from 'nuxt_plugin_vueinfinitescroll_4479822e' // Source: ../plugins/vue-infinite-scroll.js (mode: 'client')
+import nuxt_plugin_elementui_72a9ed1c from 'nuxt_plugin_elementui_72a9ed1c' // Source: ../plugins/element-ui.js (mode: 'client')
+import nuxt_plugin_nuxtquillplugin_3ab6ceae from 'nuxt_plugin_nuxtquillplugin_3ab6ceae' // Source: ../plugins/nuxt-quill-plugin.js (mode: 'client')
 
-// Component: <no-ssr>
-Vue.component(NoSSR.name, NoSSR)
+// Component: <NoSsr>
+Vue.component(NoSsr.name, NoSsr)
 
-// Component: <nuxt-child>
+// Component: <NuxtChild>
 Vue.component(NuxtChild.name, NuxtChild)
+Vue.component('NChild', NuxtChild)
 
-// Component: <nuxt-link>
-Vue.component(NuxtLink.name, NuxtLink)
+// Component NuxtLink is imported in server.js or client.js
 
-// Component: <nuxt>`
+// Component: <Nuxt>`
 Vue.component(Nuxt.name, Nuxt)
 
 // vue-meta configuration
