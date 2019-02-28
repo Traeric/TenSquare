@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name="tb_enterprise")
-public class Enterprise implements Serializable{
+public class Enterprise implements Serializable {
 
 	@Id
 	private String id;//ID

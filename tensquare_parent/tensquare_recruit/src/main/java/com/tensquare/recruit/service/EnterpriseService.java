@@ -38,12 +38,6 @@ public class EnterpriseService {
         return enterpriseDao.findByIshot(ishot);
     }
 
-    public void save(Enterprise enterprise) {
-        // 根据雪花算法生成分布式id
-        enterprise.setId(String.valueOf(idWorker.nextId()));
-        enterpriseDao.save(enterprise);
-    }
-
     /**
      * 查询全部列表
      *

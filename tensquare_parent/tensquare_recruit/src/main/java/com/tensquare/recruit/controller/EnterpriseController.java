@@ -41,12 +41,6 @@ public class EnterpriseController {
         return new Result(true, StatusCode.OK.getCode(), "查询成功", enterpriseService.findById(id));
     }
 
-    @PostMapping
-    public Result save(@RequestBody Enterprise enterprise) {
-		enterpriseService.save(enterprise);
-        return new Result(true, StatusCode.OK.getCode(), "添加成功");
-    }
-
     @PutMapping("/{enterpriseId}")
     public Result update(@PathVariable("enterpriseId") String id, @RequestBody Enterprise enterprise) {
         enterprise.setId(id);

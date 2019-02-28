@@ -90,15 +90,6 @@ public class RecruitService {
 	}
 
 	/**
-	 * 增加
-	 * @param recruit
-	 */
-	public void add(Recruit recruit) {
-		recruit.setId( idWorker.nextId()+"" );
-		recruitDao.save(recruit);
-	}
-
-	/**
 	 * 修改
 	 * @param recruit
 	 */

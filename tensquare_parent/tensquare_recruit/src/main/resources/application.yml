@@ -12,6 +12,13 @@ spring:
   jpa:      # 配置jpa
     database: mysql
     show-sql: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+
 
 
 

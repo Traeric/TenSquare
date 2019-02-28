@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import middleware from './middleware'
+import middleware from './middleware.js'
 import {
   applyAsyncData,
   sanitizeComponent,
@@ -14,11 +14,13 @@ import {
   compile,
   getQueryDiff,
   globalHandleError
-} from './utils'
-import { createApp, NuxtError } from './index'
+} from './utils.js'
+import { createApp, NuxtError } from './index.js'
+import NuxtLink from './components/nuxt-link.client.js' // should be included after ./index.js
 
-const noopData = () => { return {} }
-const noopFetch = () => {}
+// Component: <NuxtLink>
+Vue.component(NuxtLink.name, NuxtLink)
+Vue.component('NLink', NuxtLink)
 
 // Global shared references
 let _lastPaths = []
@@ -68,11 +70,14 @@ if (!Vue.config.$nuxt) {
 }
 Vue.config.$nuxt.$nuxt = true
 
+const errorHandler = Vue.config.errorHandler || console.error
+
 // Create and mount App
 createApp()
   .then(mountApp)
   .catch((err) => {
-    console.error('[nuxt] Error while initializing app', err)
+    err.message = '[nuxt] Error while mounting app: ' + err.message
+    errorHandler(err)
   })
 
 function componentOption(component, key, ...args) {
@@ -138,10 +143,21 @@ async function loadAsyncComponents(to, from, next) {
 
     // Call next()
     next()
-  } catch (err) {
-    this.error(err)
-    this.$nuxt.$emit('routeChanged', to, from, error)
-    next(false)
+  } catch (error) {
+    const err = error || {}
+    const statusCode = err.statusCode || err.status || (err.response && err.response.status) || 500
+    const message = err.message || ''
+
+    // Handle chunk loading errors
+    // This may be due to a new deployment or a network problem
+    if (/^Loading chunk (\d)+ failed\./.test(message)) {
+      window.location.reload(true /* skip cache */)
+      return // prevent error page blinking for user
+    }
+
+    this.error({ statusCode, message })
+    this.$nuxt.$emit('routeChanged', to, from, err)
+    next()
   }
 }
 
@@ -176,8 +192,9 @@ function callMiddleware(Components, context, layout) {
   // If layout is undefined, only call global middleware
   if (typeof layout !== 'undefined') {
     midd = [] // Exclude global middleware if layout defined (already called before)
-    if (layout.middleware) {
-      midd = midd.concat(layout.middleware)
+    layout = sanitizeComponent(layout)
+    if (layout.options.middleware) {
+      midd = midd.concat(layout.options.middleware)
     }
     Components.forEach((Component) => {
       if (Component.options.middleware) {
@@ -405,7 +422,7 @@ async function render(to, from, next) {
 
     this.error(error)
     this.$nuxt.$emit('routeChanged', to, from, error)
-    next(false)
+    next()
   }
 }
 
@@ -491,10 +508,13 @@ function nuxtReady(_app) {
   })
 }
 
+const noopData = () => { return {} }
+const noopFetch = () => {}
+
 // Special hot reload with asyncData(context)
 function getNuxtChildComponents($parent, $components = []) {
   $parent.$children.forEach(($child) => {
-    if ($child.$vnode.data.nuxtChild && !$components.find(c =>(c.$options.__file === $child.$options.__file))) {
+    if ($child.$vnode && $child.$vnode.data.nuxtChild && !$components.find(c =>(c.$options.__file === $child.$options.__file))) {
       $components.push($child)
     }
     if ($child.$children && $child.$children.length) {
@@ -653,7 +673,7 @@ async function mountApp(__app) {
     // Push the path and then mount app
     router.push(path, () => mount(), (err) => {
       if (!err) return mount()
-      console.error(err)
+      errorHandler(err)
     })
   })
 }
